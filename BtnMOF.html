@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>SSM BIZCODE FINDER</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/ssm_logo.png" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <!-- navbar-shrink kalau nak tukar colour  -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"> 
+            <div class="container">
+                <div class="imageposition">
+                    <a href="index.html"><img src="assets/img/home.png" alt="..." class="img-resize3" /></a>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#services">Carian Melalui Kod Bidang MOF</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <section class="page-section">
+            <div class="container">
+                <div class="text-center">
+                    <div class="imageposition2">
+                        <a><img src="assets/img/jatanegara.png" alt="..." class="img-resize" /></a>
+                        <a><img src="assets/img/ssm_logo.png" alt="..." class="img-resize2" /></a>
+                    </div>
+                    <h2 class="section-heading text-uppercase">Carian Melalui Kod Bidang MOF</h2>
+                </div>
+                <div class="row text-center">
+                    <div class="search">
+                        <label class="search-label" for="searchQuery">Kod Bidang:</label>
+                        <input type="text" id="searchQuery" class="search-input" placeholder="e.g: 010101 (6 digit)">
+                        <button class="search-button" onclick="performSearch()">Cari</button>
+                    </div>
+                    <div class="result-text" id="resultText"></div>
+                    <a class="reveal" href="pdf mof.pdf" target="_blank">SENARAI KOD BIDANG
+                        BEKALAN DAN PERKHIDMATAN (MOF)</a>
+                    <div class="result1" id="resultContainer1">
+                        <h2>INFO CARIAN</h2>
+                        <table class="result-table1" id="resultTable1">
+                            <thead>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="result" id="resultContainer2">
+                        <h2>JADUAL KOD MSIC</h2>
+                        <table class="result-table2" id="resultTable2">
+                            <thead>
+                                <tr>
+                                    <th>Kod MSIC</th>
+                                    <th>Keterangan Kod</th>
+                                    <th>Seksyen/Sektor</th>
+                                    <th>Keterangan Seksyen/Sektor</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page-section">
+            <div class="container">
+                
+            </div>
+        </section>
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Hakcipta terpelihara &copy; Your Website 2023</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/ssmofficialpage" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/ssmofficialpage" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Dasar Privasi</a>
+                        <a class="link-dark text-decoration-none" href="#!">Dasar Keselamatan</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script>
+            function performSearch() {
+                var query = document.getElementById("searchQuery").value;
+                var resultContainer1 = document.getElementById("resultContainer1");
+                var resultContainer2 = document.getElementById("resultContainer2");
+                var resultTable1 = document.getElementById("resultTable1").getElementsByTagName("tbody")[0];
+                var resultTable2 = document.getElementById("resultTable2").getElementsByTagName("tbody")[0];
+                var resultText = document.getElementById("resultText");             
+            
+                fetch('http://localhost:5000/MOF')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Filter the data to find all matching items
+                        var matchingItems = data.filter(item => item.MOF === query);
+                        resultText.innerHTML ="";
+                        resultTable1.innerHTML = "";
+                        resultTable2.innerHTML = "";
+            
+                        if (matchingItems.length > 0) {
+                            
+                            matchingItems.forEach(matchingItem => {
+                                resultTable1.innerHTML = "";
+                                document.querySelectorAll(".result-table1 thead, .result-table2 thead").forEach(function(header) {
+                                    header.style.display = "table-header-group";
+                                });
+                                // Show the table header for resultTable2
+                                var resultTable2Header = document.querySelector(".result1 h2");
+                                resultTable2Header.style.display = "block"; // Display the table header
+                                
+                                // Show the table header for resultTable2
+                                var resultTable2Header = document.querySelector(".result h2");
+                                resultTable2Header.style.display = "block"; // Display the table header
+    
+                                // Iterate through matching items and display them
+                                addRow1(resultTable1, 'Bidang', matchingItem.bidang);
+                                addRow1(resultTable1, 'Sub Bidang', matchingItem.sub);
+                                addRow1(resultTable1, 'Keterangan', matchingItem.Perkara);
+                                addRow1(resultTable1, 'Kod MOF', matchingItem.MOF);
+                                addRow2(resultTable2, matchingItem.MSIC, matchingItem.Keterangan, matchingItem.Seksyen, matchingItem.NamaSeksyen);
+                            });
+                        } else {
+
+                            document.querySelectorAll(".result-table1 thead, .result-table2 thead").forEach(function(header) {
+                            header.style.display = "none";
+                            }); 
+                            var resultTable2Header = document.querySelector(".result1 h2, .result h2");
+                            resultTable2Header.style.display = "none"; // Display the table header
+                                            
+                            // Show the table header for resultTable2
+                            var resultTable2Header = document.querySelector(".result h2");
+                            resultTable2Header.style.display = "none"; // Display the table header  
+                            // Display an error message
+                            resultText.innerHTML = 'Carian Kod Bidang Tidak Tepat';
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }        
+            function addRow1(table, label, value) {
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                cell1.innerHTML = '<strong>' + label + '</strong>';
+                cell2.innerHTML = value;
+            }              
+            function addRow2(table, MSIC, Keterangan, Seksyen, NamaSeksyen) {
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+                cell1.innerHTML = MSIC;
+                cell2.innerHTML = Keterangan;
+                cell3.innerHTML = Seksyen;
+                cell4.innerHTML = NamaSeksyen;
+            }        
+        </script> 
+    </body>
+</html>

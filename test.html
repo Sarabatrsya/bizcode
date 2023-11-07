@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>SSM BIZCODE FINDER</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/ssm_logo.png" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <!-- navbar-shrink kalau nak tukar colour -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"> 
+            <div class="container">
+                <div class="imageposition">
+                    <a href="index.html"><img src="assets/img/home.png" alt="..." class="img-resize3" /></a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#services">Carian Melalui Terma Khas Aktiviti Perniagaan</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <section class="page-section">
+            <div class="container">
+                <div class="text-center">
+                    <div class="imageposition2">
+                        <a><img src="assets/img/jatanegara.png" alt="..." class="img-resize" /></a>
+                        <a><img src="assets/img/ssm_logo.png" alt="..." class="img-resize2" /></a>
+                    </div>
+                    <h2 class="section-heading text-uppercase">Carian Melalui Terma Khas Aktiviti Perniagaan</h2>
+                </div>
+                <div class="row text-center">
+                    <div class="search">
+                        <label class="search-label" for="searchQuery">Aktiviti:</label>
+                        <input type="text" id="searchQuery" class="search-input" placeholder="e.g: Food Truck">
+                        <button class="search-button" onclick="performSearch()">Cari</button>
+                    </div>
+                    <h6>Nota: Fungsi carian ini adalah terhad kepada aktiviti perniagaan yang disenaraikan sahaja.</h6>
+                        <div class="result-text" id="resultText"></div>
+                        <div class="dropdown">
+                            <div class="reveal" onclick="myFunction()">Senarai Terma Khas</div>
+                            <div id="myDropdown" class="dropdown-content">
+                              <table class="tabled">
+                                <tr>
+                                  <td>Food Truck</td>
+                                  <td>Youtuber</td>
+                                  <td>Dropship</td>
+                                  <td>E-hailing</td>
+                                  <td>Perkhidmatan Jurugambar</td>
+                                  <td>Jual barang terpakai</td>
+                                  <td>Home Tutor  </td>
+                                </tr>
+                                <tr>
+                                  <td>Mengajar Al-Quran</td>
+                                  <td>Penjagaan Post Natal</td>
+                                  <td>Pusat Kecantikan</td>
+                                  <td>Pusat Jagaan</td>
+                                  <td>Dobi layan diri</td>
+                                  <td>Glamping</td>
+                                  <td>Pasar Raya  </td>
+                                </tr>
+                                <tr>
+                                  <td>BnB</td>
+                                  <td>Stesen Minyak</td>
+                                  <td>Mengajar Atas Talian</td>
+                                  <td>Kedai/Kiosk Jual Minuman</td>
+                                  <td>Sewa kenderaan tanpa pemandu</td>
+                                  <td>Pengasuh</td>
+                                </tr>
+                                <tr>
+                                  <td>Pasar Mini</td>
+                                  <td>Kedai 'Convenience'</td>
+                                  <td>Kedai Bakeri</td>
+                                  <td>Stor Serbaneka</td>
+                                  <td>Hypermarket</td>
+                                  <td>Kedai Runcit</td>
+                                </tr>
+                              </table>
+                            </div>
+                        </div>
+                    <div class="result" id="resultContainer2">
+                        <h2>JADUAL KOD MSIC</h2>
+                        <table class="result-table3" id="resultTable3">
+                            <thead>
+                                <tr>
+                                    <th>Aktiviti</th>
+                                    <th>Kod MSIC</th>
+                                    <th>Keterangan Kod</th>
+                                    <th>Seksyen/Sektor</th>
+                                    <th>Keterangan Seksyen/Sektor</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page-section">
+            <div class="container">
+                
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Hakcipta terpelihara &copy; Your Website 2023</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/ssmofficialpage" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/ssmofficialpage" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Dasar Privasi</a>
+                        <a class="link-dark text-decoration-none" href="#!">Dasar Keselamatan</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script>
+            function performSearch() {
+                var query = document.getElementById("searchQuery").value.toLowerCase(); // Convert query to lowercase
+                var resultContainer2 = document.getElementById("resultContainer2");
+                var resultTable3 = document.getElementById("resultTable3").getElementsByTagName("tbody")[0];
+            
+                fetch('http://localhost:5000/NEWTERM')
+                    .then(response => response.json())
+                    .then(data => {
+                        resultTable3.innerHTML = "";
+                        resultText.innerHTML = "";
+                        var matchingItems = data.filter(item => rowContainsQuery(item, query));
+                        if (matchingItems.length > 0) {
+                            // Show the table headers
+                            document.querySelectorAll(".result-table3 thead").forEach(function(header) {
+                                header.style.display = "table-header-group";
+                            });
+            
+                            // Show the table header for resultTable2
+                            var resultTable3Header = document.querySelector(".result h2");
+                            resultTable3Header.style.display = "block"; // Display the table header
+                            // Iterate through matching items and display them
+                            matchingItems.forEach(matchingItem => {
+                                addRow2(resultTable3, matchingItem.Term, matchingItem.MSIC, matchingItem.Keterangan, matchingItem.Seksyen, matchingItem.NamaSeksyen);
+                            });
+            
+                        } else {
+                            document.querySelectorAll(".result-table3 thead").forEach(function(header) {
+                                header.style.display = "none";
+                            });
+            
+                            // Show the table header for resultTable2
+                            var resultTable2Header = document.querySelector(".result h2");
+                            resultTable2Header.style.display = "none"; // Display the table header
+                            // Display an error message or handle it as appropriate for your design
+                            resultText.innerHTML = 'Tiada carian ditemui. Sila rujuk senarai aktiviti perniagaan yang disediakan.';
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+            
+            function rowContainsQuery(item, query) {
+                for (var key in item) {
+                    if (item[key] && item[key].toString().toLowerCase().includes(query)) { // Convert item[key] to lowercase
+                        return true;
+                    }
+                }
+                return false;
+            }                         
+            function addRow2(table, Term, MSIC, Keterangan, Seksyen, NamaSeksyen) {
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+                var cell5 = row.insertCell(4);
+                cell1.innerHTML = Term;
+                cell2.innerHTML = MSIC;
+                cell3.innerHTML = Keterangan;
+                cell4.innerHTML = Seksyen;
+                cell5.innerHTML = NamaSeksyen;
+            }
+            function myFunction() {
+                var dropdownContent = document.getElementById("myDropdown");
+                  if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                  } else {
+                    dropdownContent.style.display = "block";
+                  }
+                }
+        </script>
+    </body>
+</html>
