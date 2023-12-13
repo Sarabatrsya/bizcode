@@ -92,7 +92,7 @@
                 var resultText = document.getElementById("resultText");
     
                 // Perform an AJAX request to fetch the data
-                fetch('http://localhost:5000/CIDB')
+                fetch('https://sarabatrsya.pythonanywhere.com/CIDB')
                     .then(response => response.json())
                     .then(data => {
                         resultText.innerHTML = "";
