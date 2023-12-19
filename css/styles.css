@@ -10988,8 +10988,15 @@ p {
   #mainNav .imageposition{
     display: flex;
     align-items: center;
-    margin-right: 100px; /* Adjust as needed */
+    margin-right: 80px; /* Adjust as needed */
     margin-left: 20px;
+  }
+  #mainNav .navbar-nav .nav-item .nav-link {
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1.2rem;
+    color: #f0f0f0;
+    letter-spacing: 0.0625em;
+    font-style: bold;
   }
 }
 header.masthead {
@@ -11245,4 +11252,5 @@ td {
   align-items: center;
   justify-content: center;
   margin-bottom: 15px;
+  width: auto;
 }
