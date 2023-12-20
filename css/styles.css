@@ -10988,7 +10988,7 @@ p {
   #mainNav .imageposition{
     display: flex;
     align-items: center;
-    margin-right: 60px; /* Adjust as needed */
+    margin-right: 80px; /* Adjust as needed */
     margin-left: 20px;
   }
   #mainNav .navbar-nav .nav-item .nav-link {
