@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>SSM BIZCODE FINDER</title>
+        <title>SSM BIZCLASSIFY FINDER</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/img/ssm_logo.png" />
         <!-- Font Awesome icons (free version)-->
@@ -78,68 +78,76 @@
                 </div>
             </div>
         </section>
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="text-center">
+                    <p class="section-subheading text-muted">Sungguhpun segala usaha telah diambil untuk memastikan 
+                        maklumat yang diberi adalah betul dan terkini, pihak Suruhanjaya Syarikat Malaysia tidak boleh 
+                        dipertanggungkan bagi sebarang kerugian kerana maklumat yang tersilap atau tertinggal.</p>
+                </div>
+            </div>
+        </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script>
-        async function performSearch() {
-            try {
+            function performSearch() {
                 var query = document.getElementById("searchQuery").value;
                 var resultContainer1 = document.getElementById("resultContainer1");
                 var resultContainer2 = document.getElementById("resultContainer2");
                 var resultTable1 = document.getElementById("resultTable1").getElementsByTagName("tbody")[0];
                 var resultTable2 = document.getElementById("resultTable2").getElementsByTagName("tbody")[0];
-                var resultText = document.getElementById("resultText");
-        
-                var response = await fetch('https://sarabatrsya.pythonanywhere.com/MOF');
-                var data = await response.json();
-        
-                // Filter the data to find all matching items
-                var matchingItems = data.filter(item => item.MOF === query);
-                resultText.innerHTML = "";
-                resultTable1.innerHTML = "";
-                resultTable2.innerHTML = "";
-        
-                if (matchingItems.length > 0) {
-                    matchingItems.forEach(matchingItem => {
+                var resultText = document.getElementById("resultText");             
+            
+                fetch('http://localhost:5000/MOF')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Filter the data to find all matching items
+                        var matchingItems = data.filter(item => item.MOF === query);
+                        resultText.innerHTML ="";
                         resultTable1.innerHTML = "";
-                        document.querySelectorAll(".result-table1 thead, .result-table2 thead").forEach(function (header) {
-                            header.style.display = "table-header-group";
-                        });
-        
-                        // Show the table header for resultTable2
-                        var resultTable2Header = document.querySelector(".result1 h2");
-                        resultTable2Header.style.display = "block"; // Display the table header
-        
-                        // Show the table header for resultTable2
-                        var resultTable2Header = document.querySelector(".result h2");
-                        resultTable2Header.style.display = "block"; // Display the table header
-        
-                        // Iterate through matching items and display them
-                        addRow1(resultTable1, 'Bidang', matchingItem.bidang);
-                        addRow1(resultTable1, 'Sub Bidang', matchingItem.sub);
-                        addRow1(resultTable1, 'Keterangan', matchingItem.Perkara);
-                        addRow1(resultTable1, 'Kod MOF', matchingItem.MOF);
-                        addRow2(resultTable2, matchingItem.MSIC, matchingItem.Keterangan, matchingItem.Seksyen, matchingItem.NamaSeksyen);
-                    });
-                } else {
-                    document.querySelectorAll(".result-table1 thead, .result-table2 thead").forEach(function (header) {
-                        header.style.display = "none";
-                    });
-                    var resultTable2Header = document.querySelector(".result1 h2, .result h2");
-                    resultTable2Header.style.display = "none"; // Display the table header
-        
-                    // Show the table header for resultTable2
-                    var resultTable2Header = document.querySelector(".result h2");
-                    resultTable2Header.style.display = "none"; // Display the table header  
-                    // Display an error message
-                    resultText.innerHTML = 'Carian Kod Bidang Tidak Tepat';
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
+                        resultTable2.innerHTML = "";
+            
+                        if (matchingItems.length > 0) {
+                            
+                            matchingItems.forEach(matchingItem => {
+                                resultTable1.innerHTML = "";
+                                document.querySelectorAll(".result-table1 thead, .result-table2 thead").forEach(function(header) {
+                                    header.style.display = "table-header-group";
+                                });
+                                // Show the table header for resultTable2
+                                var resultTable2Header = document.querySelector(".result1 h2");
+                                resultTable2Header.style.display = "block"; // Display the table header
+                                
+                                // Show the table header for resultTable2
+                                var resultTable2Header = document.querySelector(".result h2");
+                                resultTable2Header.style.display = "block"; // Display the table header
+    
+                                // Iterate through matching items and display them
+                                addRow1(resultTable1, 'Bidang', matchingItem.bidang);
+                                addRow1(resultTable1, 'Sub Bidang', matchingItem.sub);
+                                addRow1(resultTable1, 'Keterangan', matchingItem.Perkara);
+                                addRow1(resultTable1, 'Kod MOF', matchingItem.MOF);
+                                addRow2(resultTable2, matchingItem.MSIC, matchingItem.Keterangan, matchingItem.Seksyen, matchingItem.NamaSeksyen);
+                            });
+                        } else {
+
+                            document.querySelectorAll(".result-table1 thead, .result-table2 thead").forEach(function(header) {
+                            header.style.display = "none";
+                            }); 
+                            var resultTable2Header = document.querySelector(".result1 h2, .result h2");
+                            resultTable2Header.style.display = "none"; // Display the table header
+                                            
+                            // Show the table header for resultTable2
+                            var resultTable2Header = document.querySelector(".result h2");
+                            resultTable2Header.style.display = "none"; // Display the table header  
+                            // Display an error message
+                            resultText.innerHTML = 'Carian Kod Bidang Tidak Tepat';
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }        
             function addRow1(table, label, value) {
                 var row = table.insertRow();
                 var cell1 = row.insertCell(0);
