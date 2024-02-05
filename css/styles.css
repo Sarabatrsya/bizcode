@@ -11253,3 +11253,9 @@ td {
   margin-bottom: 15px;
   width: auto;
 }
+.footers {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* Set the background color as needed */
+}
