@@ -11253,3 +11253,7 @@ td {
   margin-bottom: 15px;
   width: auto;
 }
+/* Custom CSS rule to adjust paragraph margin */
+.footer p {
+    margin-bottom: 10px; /* Adjust the margin value as needed */
+}
