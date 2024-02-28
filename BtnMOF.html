@@ -81,7 +81,7 @@
                             <tbody></tbody>
                         </table>
                     </div>
-                    <div class="result" id="resultContainer2" style="color: #000; font-size:16px; padding-bottom: 50px;">">
+                    <div class="result" id="resultContainer2" style="color: #000; font-size:16px; padding-bottom: 50px;">
                         <h2>JADUAL KOD MSIC</h2>
                         <table class="result-table2" id="resultTable2">
                             <thead>
@@ -165,11 +165,13 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script>
+            var lastScrollPosition = window.scrollY;
+            
              window.addEventListener('scroll', function() {
+            var currentScrollPosition = window.scrollY;
             var footer = document.getElementById('footer');
-            var offset = window.innerHeight + window.scrollY - document.body.offsetHeight;
 
-            if (offset > 0) {
+            if (currentScrollPosition > lastScrollPosition) {
                 // When scrolled to the bottom, make footer position relative
                 footer.style.position = 'relative';
             } else {
