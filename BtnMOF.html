@@ -165,24 +165,9 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script>
-            var lastScrollPosition = window.scrollY;
-            
-             window.addEventListener('scroll', function() {
-            var currentScrollPosition = window.scrollY;
-            var footer = document.getElementById('footer');
-
-            if (currentScrollPosition > lastScrollPosition) {
-                // When scrolled to the bottom, make footer position relative
-                footer.style.position = 'relative';
-            } else {
-                // Otherwise, keep footer position fixed
-                footer.style.position = 'fixed';
-            }
-        });
-            function adjustPaddingBottom() {
-                var footerHeight = document.getElementById('footer').offsetHeight;
-                var servicesSection = document.getElementById('services');
-                servicesSection.style.paddingBottom = footerHeight + 'px';
+            function toggleFooterPosition() {
+                var footer = document.getElementById('footer');
+                footer.classList.toggle('footer-relative');
             }
             function performSearch() {
                 var query = document.getElementById("searchQuery").value;
