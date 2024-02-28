@@ -12245,4 +12245,6 @@ html.gap-outside .pin-wrapper .sticky-wrapper.sticky-effect-active .sticky-body 
 .footer1-right-light-border {
 	border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
-
+.footer-relative {
+                position: relative !important;
+            }
