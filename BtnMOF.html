@@ -165,6 +165,18 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script>
+             window.addEventListener('scroll', function() {
+            var footer = document.getElementById('footer');
+            var offset = window.innerHeight + window.scrollY - document.body.offsetHeight;
+
+            if (offset > 0) {
+                // When scrolled to the bottom, make footer position relative
+                footer.style.position = 'relative';
+            } else {
+                // Otherwise, keep footer position fixed
+                footer.style.position = 'fixed';
+            }
+        });
             function adjustPaddingBottom() {
                 var footerHeight = document.getElementById('footer').offsetHeight;
                 var servicesSection = document.getElementById('services');
