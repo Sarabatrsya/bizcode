@@ -163,7 +163,7 @@
                 var resultContainer2 = document.getElementById("resultContainer2");
                 var resultTable3 = document.getElementById("resultTable3").getElementsByTagName("tbody")[0];
             
-                fetch('http://localhost:5000/NEWTERM')
+                fetch('https://sarabatrsya.pythonanywhere.com/NEWTERM') //http://localhost:5000/NEWTERM
                     .then(response => response.json())
                     .then(data => {
                         resultTable3.innerHTML = "";
