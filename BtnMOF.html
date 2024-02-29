@@ -68,7 +68,7 @@
                     <div class="search">
                         <label class="search-label" for="searchQuery" style="color: #000;">Kod Bidang:</label>
                         <input type="text" id="searchQuery" class="search-input" style="color: #000;" placeholder="e.g: 010101 (6 digit)">
-                        <button class="search-button" onclick="performSearch(); toggleFooterPosition()">Cari</button>
+                        <button class="search-button" onclick="performSearch();">Cari</button>
                     </div>
                     <div class="result-text" id="resultText"></div>
                     <a class="reveal" href="pdf mof.pdf" target="_blank" style="font-size:14px">SENARAI KOD BIDANG
@@ -165,10 +165,6 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script>
-            function toggleFooterPosition() {
-                var footer = document.getElementById('footer');
-                footer.classList.toggle('footer-relative');
-            }
             function performSearch() {
                 var query = document.getElementById("searchQuery").value;
                 var resultContainer1 = document.getElementById("resultContainer1");
