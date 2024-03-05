@@ -9,7 +9,7 @@ CORS(app)
 def get_data():
     # Load data from the Excel file
     #http://localhost:5000/MOF
-    excel_file = 'Excel/mof.xlsx'  # Replace with your file name
+    excel_file = '/home/Sarabatrsya/mysite/mof.xlsx'  # Replace with your file name
     df = pd.read_excel(excel_file)
 
     # Convert data to a list of dictionaries
@@ -21,7 +21,7 @@ def get_data():
 def get_data2():
     # Load data from the Excel file
     #http://localhost:5000/CIDB
-    excel_file = 'Excel/CIDB.xlsx'  # Replace with your file name
+    excel_file = '/home/Sarabatrsya/mysite/CIDB.xlsx'  # Replace with your file name
     df = pd.read_excel(excel_file)
 
     # Convert data to a list of dictionaries
@@ -33,7 +33,7 @@ def get_data2():
 def get_data3():
     # Load data from the Excel file
     #http://localhost:5000/NEWTERM
-    excel_file = 'Excel/KAMUS MSIC.xlsx'  # Replace with your file name
+    excel_file = '/home/Sarabatrsya/mysite/KAMUS MSIC.xlsx'  # Replace with your file name
     df = pd.read_excel(excel_file)
 
     # Convert data to a list of dictionaries
@@ -42,4 +42,4 @@ def get_data3():
     return jsonify(data)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False, host='0.0.0.0', port=8081)
