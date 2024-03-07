@@ -10861,7 +10861,7 @@ p {
 }
 
 .page-section {
-  overflow: auto;
+/*   overflow: auto; */
   height: 100vh;
 }
 .page-section h2.section-heading, .page-section .section-heading.h2 {
