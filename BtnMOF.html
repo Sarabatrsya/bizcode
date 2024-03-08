@@ -165,116 +165,103 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script>
-            function adjustPageSectionHeight() {
-                var resultContainer2 = document.getElementById("resultContainer2");
-                var pageSection = document.querySelector(".page-section1");
-                var footer = document.getElementById("footer");
-            
-                if (resultContainer2.style.display === "none") {
-                    // No result table presented, adjust page-section height
-                    var windowHeight = window.innerHeight;
-                    var headerHeight = document.getElementById("header").offsetHeight;
-                    var footerHeight = document.getElementById("footer").offsetHeight;
-                    var newHeight = windowHeight - headerHeight - footerHeight;
-                    pageSection.style.minHeight = newHeight + "px"; // Use min-height to ensure the content can expand beyond this height
-                    document.body.classList.remove("result-displayed");
-                    document.body.classList.add("no-result");
-                } else {
-                    // Result table presented, set page-section height to auto
-                    pageSection.style.minHeight = "auto";
-                    document.body.classList.remove("no-result");
-                    document.body.classList.add("result-displayed");
-                }
+            document.addEventListener("DOMContentLoaded", function () {
+            adjustPageSectionHeight();
+            window.onresize = adjustPageSectionHeight;
+        });
+        
+        function adjustPageSectionHeight() {
+            var resultContainer2 = document.getElementById("resultContainer2");
+            var pageSection = document.querySelector(".page-section1");
+            var footer = document.getElementById("footer");
+        
+            if (resultContainer2.style.display === "none") {
+                var windowHeight = window.innerHeight;
+                var headerHeight = document.getElementById("header").offsetHeight;
+                var footerHeight = document.getElementById("footer").offsetHeight;
+                var newHeight = windowHeight - headerHeight - footerHeight;
+                pageSection.style.minHeight = newHeight + "px";
+                document.body.classList.remove("result-displayed");
+                document.body.classList.add("no-result");
+            } else {
+                pageSection.style.minHeight = "auto";
+                document.body.classList.remove("no-result");
+                document.body.classList.add("result-displayed");
             }
-            window.onload = function () {
-                adjustPageSectionHeight(); // Initial adjustment on page load
-            };
-            
-            window.onresize = function () {
-                adjustPageSectionHeight(); // Adjust height when window is resized
-            };
-            function performSearch() {
-                var query = document.getElementById("searchQuery").value;
-                var resultContainer1 = document.getElementById("resultContainer1");
-                var resultContainer2 = document.getElementById("resultContainer2");
-                var resultTable1 = document.getElementById("resultTable1").getElementsByTagName("tbody")[0];
-                var resultTable2 = document.getElementById("resultTable2").getElementsByTagName("tbody")[0];
-                var resultText = document.getElementById("resultText");             
-            
-                fetch('https://sarabatrsya.pythonanywhere.com/MOF') //http://localhost:5000/MOF
-                    .then(response => response.json())
-                    .then(data => {
-                        // Filter the data to find all matching items
-                        var matchingItems = data.filter(item => item.MOF === query);
-                        resultText.innerHTML ="";
-                        resultTable1.innerHTML = "";
-                        resultTable2.innerHTML = "";
-            
-                        if (matchingItems.length > 0) {
-                            resultContainer1.style.display = "block";
-                            resultContainer2.style.display = "block";
-                            
-                            matchingItems.forEach(matchingItem => {
-                                resultTable1.innerHTML = "";
-                                document.querySelectorAll(".result-table1 thead, .result-table2 thead").forEach(function(header) {
-                                    header.style.display = "table-header-group";
-                                });
-                                // Show the table header for resultTable2
-                                var resultTable2Header = document.querySelector(".result1 h2");
-                                resultTable2Header.style.display = "block"; // Display the table header
-                                
-                                // Show the table header for resultTable2
-                                var resultTable2Header = document.querySelector(".result h2");
-                                resultTable2Header.style.display = "block"; // Display the table header
-    
-                                // Iterate through matching items and display them
-                                addRow1(resultTable1, 'Bidang', matchingItem.bidang);
-                                addRow1(resultTable1, 'Sub Bidang', matchingItem.sub);
-                                addRow1(resultTable1, 'Keterangan', matchingItem.Perkara);
-                                addRow1(resultTable1, 'Kod MOF', matchingItem.MOF);
-                                addRow2(resultTable2, matchingItem.MSIC, matchingItem.Keterangan, matchingItem.Seksyen, matchingItem.NamaSeksyen);
-
-                                adjustPageSectionHeight();
-                            });
-                
-                        } else {
-                                
-                            resultContainer1.style.display = "none";
-                            resultContainer2.style.display = "none";
-                            document.querySelectorAll(".result-table1 thead, .result-table2 thead").forEach(function(header) {
+        }
+        
+        function performSearch() {
+            var query = document.getElementById("searchQuery").value;
+            var resultContainer1 = document.getElementById("resultContainer1");
+            var resultContainer2 = document.getElementById("resultContainer2");
+            var resultTable1 = document.getElementById("resultTable1").getElementsByTagName("tbody")[0];
+            var resultTable2 = document.getElementById("resultTable2").getElementsByTagName("tbody")[0];
+            var resultText = document.getElementById("resultText");
+        
+            fetch('https://sarabatrsya.pythonanywhere.com/MOF') // Change URL to your API endpoint
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    var matchingItems = data.filter(item => item.MOF === query);
+                    resultText.innerHTML = "";
+                    resultTable1.innerHTML = "";
+                    resultTable2.innerHTML = "";
+        
+                    if (matchingItems.length > 0) {
+                        resultContainer1.style.display = "block";
+                        resultContainer2.style.display = "block";
+        
+                        matchingItems.forEach(matchingItem => {
+                            addRow1(resultTable1, 'Bidang', matchingItem.bidang);
+                            addRow1(resultTable1, 'Sub Bidang', matchingItem.sub);
+                            addRow1(resultTable1, 'Keterangan', matchingItem.Perkara);
+                            addRow1(resultTable1, 'Kod MOF', matchingItem.MOF);
+                            addRow2(resultTable2, matchingItem.MSIC, matchingItem.Keterangan, matchingItem.Seksyen, matchingItem.NamaSeksyen);
+                        });
+        
+                    } else {
+                        resultContainer1.style.display = "none";
+                        resultContainer2.style.display = "none";
+                        document.querySelectorAll(".result-table1 thead, .result-table2 thead").forEach(function (header) {
                             header.style.display = "none";
-                            }); 
-                            var resultTable2Header = document.querySelector(".result1 h2, .result h2");
-                            resultTable2Header.style.display = "none"; // Display the table header
-                                            
-                            // Show the table header for resultTable2
-                            var resultTable2Header = document.querySelector(".result h2");
-                            resultTable2Header.style.display = "none"; // Display the table header  
-                            // Display an error message
-                            resultText.innerHTML = 'Carian Kod Bidang Tidak Tepat';
-
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
-            }        
-            function addRow1(table, label, value) {
-                var row = table.insertRow();
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
-                cell1.innerHTML = '<strong>' + label + '</strong>';
-                cell2.innerHTML = value;
-            }              
-            function addRow2(table, MSIC, Keterangan, Seksyen, NamaSeksyen) {
-                var row = table.insertRow();
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
-                var cell3 = row.insertCell(2);
-                var cell4 = row.insertCell(3);
-                cell1.innerHTML = MSIC;
-                cell2.innerHTML = Keterangan;
-                cell3.innerHTML = Seksyen;
-                cell4.innerHTML = NamaSeksyen;
-            }        
+                        });
+                        var resultTable2Header = document.querySelector(".result1 h2, .result h2");
+                        resultTable2Header.style.display = "none";
+                        resultText.innerHTML = 'Carian Kod Bidang Tidak Tepat';
+                    }
+        
+                    adjustPageSectionHeight();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    resultText.innerHTML = 'Ralat berlaku semasa memuatkan data.';
+                });
+        }
+        
+        function addRow1(table, label, value) {
+            var row = table.insertRow();
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.innerHTML = '<strong>' + label + '</strong>';
+            cell2.innerHTML = value;
+        }
+        
+        function addRow2(table, MSIC, Keterangan, Seksyen, NamaSeksyen) {
+            var row = table.insertRow();
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            cell1.innerHTML = MSIC;
+            cell2.innerHTML = Keterangan;
+            cell3.innerHTML = Seksyen;
+            cell4.innerHTML = NamaSeksyen;
+        }
+              
         </script> 
     </body>
 </html>
