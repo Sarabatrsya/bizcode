@@ -9987,7 +9987,6 @@ a.text-light:focus, a.text-light:hover {
 	padding: 0;
 	position: fixed;
 	clear: both;
-	flex-shrink: 0; /* Prevent footer from shrinking */
 	margin-top: auto; /* Push footer to the bottom of the viewport */
         width: 100%;
 	bottom:0;
