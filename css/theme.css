@@ -9992,10 +9992,13 @@ a.text-light:focus, a.text-light:hover {
 	bottom:0;
 }
 .result-displayed #footer {
-    position: relative; /* Move below result table */
+    position: absolute; /* Move below result table */
     bottom: auto;
 }
-
+.no-result #footer {
+    position: fixed;
+    bottom: 0;
+}
 #footer .footer-ribbon {
 	background: #999;
 	position: absolute;
