@@ -18,6 +18,13 @@
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/theme.css" rel="stylesheet" />
         <link href="css/skin-it-services.css" rel="stylesheet" />
+        <style>
+            #footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
+        </style>
     </head>
     <body id="page-top" style="width:100vw; height:100vh; margin:0; padding:0;">
         <header id="header" class="header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 70}" style="height: 102.8px;">
@@ -193,6 +200,11 @@
                             resultTable2Header.style.display = "none"; // Display the table header
                             // Display an error message or handle it as appropriate for your design
                             resultText.innerHTML = 'Tiada carian ditemui. Sila rujuk senarai aktiviti perniagaan yang disediakan.';
+                        }
+                    if (matchingItems.length > 0) {
+                            document.getElementById("footer").style.position = "static";
+                        } else {
+                            document.getElementById("footer").style.position = "fixed";
                         }
                     })
                     .catch(error => console.error('Error:', error));
