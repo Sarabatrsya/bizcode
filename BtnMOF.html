@@ -207,7 +207,7 @@
                 .then(data => {
                     var matchingItems = data.filter(item => item.MOF === query);
                     resultText.innerHTML = "";
-                    resultTable1.innerHTML = "";
+                    resultTable1.innerHTML = ""; // Clear the table before populating it with new data
                     resultTable2.innerHTML = "";
         
                     if (matchingItems.length > 0) {
@@ -221,7 +221,7 @@
                             addRow1(resultTable1, 'Kod MOF', matchingItem.MOF);
                         });
         
-                        // Add rows to resultTable2 (if needed)
+                        // Populate resultTable2 with data
                         matchingItems.forEach(matchingItem => {
                             addRow2(resultTable2, matchingItem.MSIC, matchingItem.Keterangan, matchingItem.Seksyen, matchingItem.NamaSeksyen);
                         });
