@@ -190,60 +190,59 @@
             }
         }
         function performSearch() {
-            var query = document.getElementById("searchQuery").value;
-            var resultContainer1 = document.getElementById("resultContainer1");
-            var resultContainer2 = document.getElementById("resultContainer2");
-            var resultTable1 = document.getElementById("resultTable1").getElementsByTagName("tbody")[0];
-            var resultTable2 = document.getElementById("resultTable2").getElementsByTagName("tbody")[0];
-            var resultText = document.getElementById("resultText");
-        
-            fetch('https://sarabatrsya.pythonanywhere.com/MOF') // Change URL to your API endpoint
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    var matchingItems = data.filter(item => item.MOF === query);
-                    resultText.innerHTML = "";
-                    resultTable1.innerHTML = ""; // Clear the table before populating it with new data
-                    resultTable2.innerHTML = "";
-        
-                    if (matchingItems.length > 0) {
-                        resultContainer1.style.display = "block";
-                        resultContainer2.style.display = "block";
-        
-                        matchingItems.forEach(matchingItem => {
-                            addRow1(resultTable1, 'Bidang', matchingItem.bidang);
-                            addRow1(resultTable1, 'Sub Bidang', matchingItem.sub);
-                            addRow1(resultTable1, 'Keterangan', matchingItem.Perkara);
-                            addRow1(resultTable1, 'Kod MOF', matchingItem.MOF);
-                        });
-        
+        var query = document.getElementById("searchQuery").value;
+        var resultContainer1 = document.getElementById("resultContainer1");
+        var resultContainer2 = document.getElementById("resultContainer2");
+        var resultTable1 = document.getElementById("resultTable1").getElementsByTagName("tbody")[0];
+        var resultTable2 = document.getElementById("resultTable2").getElementsByTagName("tbody")[0];
+        var resultText = document.getElementById("resultText");
+    
+        fetch('https://sarabatrsya.pythonanywhere.com/MOF') // Change URL to your API endpoint
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                var matchingItems = data.filter(item => item.MOF === query);
+                resultText.innerHTML = "";
+                resultTable1.innerHTML = ""; // Clear the table before populating it with new data
+                resultTable2.innerHTML = "";
+    
+                if (matchingItems.length > 0) {
+                    resultContainer1.style.display = "block";
+                    resultContainer2.style.display = "block";
+    
+                    matchingItems.forEach(matchingItem => {
+                        // Populate resultTable1 with data
+                        addRow1(resultTable1, 'Bidang', matchingItem.bidang);
+                        addRow1(resultTable1, 'Sub Bidang', matchingItem.sub);
+                        addRow1(resultTable1, 'Keterangan', matchingItem.Perkara);
+                        addRow1(resultTable1, 'Kod MOF', matchingItem.MOF);
+                        
                         // Populate resultTable2 with data
-                        matchingItems.forEach(matchingItem => {
-                            addRow2(resultTable2, matchingItem.MSIC, matchingItem.Keterangan, matchingItem.Seksyen, matchingItem.NamaSeksyen);
-                        });
-        
-                    } else {
-                        resultContainer1.style.display = "none";
-                        resultContainer2.style.display = "none";
-                        document.querySelectorAll(".result-table1 thead, .result-table2 thead").forEach(function (header) {
-                            header.style.display = "none";
-                        });
-                        var resultTable2Header = document.querySelector(".result1 h2, .result h2");
-                        resultTable2Header.style.display = "none";
-                        resultText.innerHTML = 'Carian Kod Bidang Tidak Tepat';
-                    }
-        
-                    adjustPageSectionHeight();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    resultText.innerHTML = 'Ralat berlaku semasa memuatkan data.';
-                });
-        }
+                        addRow2(resultTable2, matchingItem.MSIC, matchingItem.Keterangan, matchingItem.Seksyen, matchingItem.NamaSeksyen);
+                    });
+    
+                } else {
+                    resultContainer1.style.display = "none";
+                    resultContainer2.style.display = "none";
+                    document.querySelectorAll(".result-table1 thead, .result-table2 thead").forEach(function (header) {
+                        header.style.display = "none";
+                    });
+                    var resultTable2Header = document.querySelector(".result1 h2, .result h2");
+                    resultTable2Header.style.display = "none";
+                    resultText.innerHTML = 'Carian Kod Bidang Tidak Tepat';
+                }
+    
+                adjustPageSectionHeight();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                resultText.innerHTML = 'Ralat berlaku semasa memuatkan data.';
+            });
+    }
         function addRow1(table, label, value) {
             var row = table.insertRow();
             var cell1 = row.insertCell(0);
