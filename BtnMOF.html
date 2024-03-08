@@ -233,6 +233,8 @@
                                 addRow1(resultTable1, 'Keterangan', matchingItem.Perkara);
                                 addRow1(resultTable1, 'Kod MOF', matchingItem.MOF);
                                 addRow2(resultTable2, matchingItem.MSIC, matchingItem.Keterangan, matchingItem.Seksyen, matchingItem.NamaSeksyen);
+
+                                adjustPageSectionHeight();
                             });
                 
                         } else {
@@ -251,7 +253,6 @@
                             // Display an error message
                             resultText.innerHTML = 'Carian Kod Bidang Tidak Tepat';
 
-                            adjustPageSectionHeight();
                         }
                     })
                     .catch(error => console.error('Error:', error));
