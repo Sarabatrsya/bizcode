@@ -166,22 +166,23 @@
         <script src="js/scripts.js"></script>
         <script>
                 function adjustPageSectionHeight() {
-                var resultContainer2 = document.getElementById("resultContainer2");
-                var pageSection = document.querySelector(".page-section1");
-            
-                if (resultContainer2.style.display === "none") {
-                    // No result table presented, adjust page-section height
-                    var windowHeight = window.innerHeight;
-                    var headerHeight = document.getElementById("header").offsetHeight;
-                    var footerHeight = document.getElementById("footer").offsetHeight;
-                    var newHeight = windowHeight - headerHeight - footerHeight;
-                    pageSection.style.height = newHeight + "px";
-                } else {
-                    // Result table presented, set page-section height to auto
-                    pageSection.style.height = "auto";
+                    var resultContainer2 = document.getElementById("resultContainer2");
+                    var pageSection = document.querySelector(".page-section1");
+                
+                    if (resultContainer2.style.display === "none") {
+                        // No result table presented, adjust page-section height
+                        var windowHeight = window.innerHeight;
+                        var headerHeight = document.getElementById("header").offsetHeight;
+                        var footerHeight = document.getElementById("footer").offsetHeight;
+                        var newHeight = windowHeight - headerHeight - footerHeight;
+                        pageSection.style.height = newHeight + "px";
+                        document.body.classList.remove("result-displayed"); // Remove class
+                    } else {
+                        // Result table presented, set page-section height to auto
+                        pageSection.style.height = "auto";
+                        document.body.classList.add("result-displayed"); // Add class
+                    }
                 }
-            }
-        
             window.onload = function () {
                 adjustPageSectionHeight(); // Initial adjustment on page load
             };
