@@ -165,7 +165,7 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script>
-                function adjustPageSectionHeight() {
+            function adjustPageSectionHeight() {
                 var resultContainer2 = document.getElementById("resultContainer2");
                 var pageSection = document.querySelector(".page-section1");
                 var footer = document.getElementById("footer");
@@ -176,17 +176,16 @@
                     var headerHeight = document.getElementById("header").offsetHeight;
                     var footerHeight = document.getElementById("footer").offsetHeight;
                     var newHeight = windowHeight - headerHeight - footerHeight;
-                    pageSection.style.height = newHeight + "px";
+                    pageSection.style.minHeight = newHeight + "px"; // Use min-height to ensure the content can expand beyond this height
                     document.body.classList.remove("result-displayed");
                     document.body.classList.add("no-result");
                 } else {
                     // Result table presented, set page-section height to auto
-                    pageSection.style.height = "auto";
+                    pageSection.style.minHeight = "auto";
                     document.body.classList.remove("no-result");
                     document.body.classList.add("result-displayed");
                 }
             }
-            
             window.onload = function () {
                 adjustPageSectionHeight(); // Initial adjustment on page load
             };
