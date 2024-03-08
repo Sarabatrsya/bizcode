@@ -2,10 +2,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>SSM BIZCODEX</title>
+        <title>SSM BIZCLASSIFY FINDER</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/img/ssm_logo.png" />
         <!-- Font Awesome icons (free version)-->
@@ -18,6 +18,13 @@
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/theme.css" rel="stylesheet" />
         <link href="css/skin-it-services.css" rel="stylesheet" />
+        <style>
+            #footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
+        </style>
     </head>
     <body id="page-top" style="width:100vw; height:100vh; margin:0; padding:0;">
         <header id="header" class="header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 70}" style="height: 102.8px;">
@@ -73,7 +80,7 @@
                     <div class="result-text" id="resultText"></div>
                     <a class="reveal" href="pdf mof.pdf" target="_blank" style="font-size:14px">SENARAI KOD BIDANG
                         BEKALAN DAN PERKHIDMATAN (MOF)</a>
-                    <div class="result1" id="resultContainer1" style="color: #000; display: none;">
+                    <div class="result1" id="resultContainer1" style="color: #000;">
                         <h2>INFO CARIAN</h2>
                         <table class="result-table1" id="resultTable1" style="color: #000; font-size:16px;">
                             <thead>
@@ -81,7 +88,7 @@
                             <tbody></tbody>
                         </table>
                     </div>
-                    <div class="result" id="resultContainer2" style="color: #000; font-size:16px; padding-bottom: 50px; display: none;">
+                    <div class="result" id="resultContainer2" style="color: #000; font-size:16px; padding-bottom: 50px;">
                         <h2>JADUAL KOD MSIC</h2>
                         <table class="result-table2" id="resultTable2">
                             <thead>
@@ -165,39 +172,15 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
-            adjustPageSectionHeight();
-            window.onresize = adjustPageSectionHeight;
-        });
-        
-        function adjustPageSectionHeight() {
-            var resultContainer2 = document.getElementById("resultContainer2");
-            var pageSection = document.querySelector(".page-section1");
-            var footer = document.getElementById("footer");
-        
-            if (resultContainer2.style.display === "none") {
-                var windowHeight = window.innerHeight;
-                var headerHeight = document.getElementById("header").offsetHeight;
-                var footerHeight = document.getElementById("footer").offsetHeight;
-                var newHeight = windowHeight - headerHeight - footerHeight;
-                pageSection.style.minHeight = newHeight + "px";
-                document.body.classList.remove("result-displayed");
-                document.body.classList.add("no-result");
-            } else {
-                pageSection.style.minHeight = "auto";
-                document.body.classList.remove("no-result");
-                document.body.classList.add("result-displayed");
-            }
-        }
-        function performSearch() {
+            function performSearch() {
+            
                 var query = document.getElementById("searchQuery").value;
                 var resultContainer1 = document.getElementById("resultContainer1");
                 var resultContainer2 = document.getElementById("resultContainer2");
                 var resultTable1 = document.getElementById("resultTable1").getElementsByTagName("tbody")[0];
                 var resultTable2 = document.getElementById("resultTable2").getElementsByTagName("tbody")[0];
                 var resultText = document.getElementById("resultText");  
-                
-                       
+                   
                 fetch('https://sarabatrsya.pythonanywhere.com/MOF') //http://localhost:5000/MOF
                     .then(response => response.json())
                     .then(data => {
@@ -244,9 +227,15 @@
                             resultText.innerHTML = 'Carian Kod Bidang Tidak Tepat';
                             
                         }
-                        adjustPageSectionHeight();
+                        if (matchingItems.length > 0) {
+                            document.getElementById("footer").style.position = "static";
+                        } else {
+                            document.getElementById("footer").style.position = "fixed";
+                        }
                     })
                     .catch(error => console.error('Error:', error));
+
+                    
             }        
             function addRow1(table, label, value) {
                 var row = table.insertRow();
@@ -265,7 +254,7 @@
                 cell2.innerHTML = Keterangan;
                 cell3.innerHTML = Seksyen;
                 cell4.innerHTML = NamaSeksyen;
-            }    
+            }        
         </script> 
     </body>
 </html>
