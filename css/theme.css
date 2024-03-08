@@ -9983,16 +9983,15 @@ a.text-light:focus, a.text-light:hover {
 #footer {
 	background: #212529;
 	border-top: 4px solid #212529;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	padding: 0;
 	position: fixed;
 	clear: both;
-	margin-top: auto; /* Push footer to the bottom of the viewport */
         width: 100%;
 	bottom:0;
 }
 .result-displayed #footer {
-    position: absolute; /* Move below result table */
+    position: relative; /* Move below result table */
     bottom: auto;
 }
 .no-result #footer {
