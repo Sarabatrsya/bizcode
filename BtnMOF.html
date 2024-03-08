@@ -189,7 +189,6 @@
                 document.body.classList.add("result-displayed");
             }
         }
-        
         function performSearch() {
             var query = document.getElementById("searchQuery").value;
             var resultContainer1 = document.getElementById("resultContainer1");
@@ -220,6 +219,10 @@
                             addRow1(resultTable1, 'Sub Bidang', matchingItem.sub);
                             addRow1(resultTable1, 'Keterangan', matchingItem.Perkara);
                             addRow1(resultTable1, 'Kod MOF', matchingItem.MOF);
+                        });
+        
+                        // Add rows to resultTable2 (if needed)
+                        matchingItems.forEach(matchingItem => {
                             addRow2(resultTable2, matchingItem.MSIC, matchingItem.Keterangan, matchingItem.Seksyen, matchingItem.NamaSeksyen);
                         });
         
@@ -241,7 +244,6 @@
                     resultText.innerHTML = 'Ralat berlaku semasa memuatkan data.';
                 });
         }
-        
         function addRow1(table, label, value) {
             var row = table.insertRow();
             var cell1 = row.insertCell(0);
