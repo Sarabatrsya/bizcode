@@ -9992,6 +9992,10 @@ a.text-light:focus, a.text-light:hover {
         width: 100%;
 	bottom:0;
 }
+.result-displayed #footer {
+    position: absolute; /* Move below result table */
+    bottom: auto;
+}
 
 #footer .footer-ribbon {
 	background: #999;
