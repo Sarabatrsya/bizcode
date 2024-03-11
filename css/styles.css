@@ -11233,8 +11233,8 @@ td {
   masthead-heading1, .masthead-heading1{
     color: #FFF;
     font-family: "Poppins", Arial, sans-serif;
-    font-size: 2p3x;
-    line-height: 26px;
+    font-size: 25px;
+    line-height: 22px;
     margin-bottom: 15px;
     font-weight: bold;
     margin-left: 25px;
@@ -11243,7 +11243,7 @@ td {
     color: #FFF;
     font-family: "Poppins", Arial, sans-serif;
     font-size: 18px;
-    line-height: 26px;
+    line-height: 17px;
     margin-bottom: 20px;
     font-weight: bold;
   }
@@ -11265,7 +11265,7 @@ td {
     color: #FFF;
     font-family: "Poppins", Arial, sans-serif;
     font-size: 15px;
-    line-height: 5px;
+    line-height: 14px;
     margin-bottom:0;
     font-weight: bold;
     margin-left: 4px;
