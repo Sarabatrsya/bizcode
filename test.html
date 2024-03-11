@@ -175,7 +175,7 @@
                     .then(data => {
                         resultTable3.innerHTML = "";
                         resultText.innerHTML = "";
-                        var matchingItems = data.filter(item => item.Term === query);
+                        var matchingItems = data.filter(item => rowContainsQuery(item,query));
                         if (matchingItems.length > 0) {
                             // Show the table headers
                             document.querySelectorAll(".result-table3 thead").forEach(function(header) {
