@@ -11158,7 +11158,7 @@ td {
 .masthead-heading1 {
 	color: #FFF;
 	font-family: "Poppins", Arial, sans-serif;
-	font-size: 48px;
+	font-size: 50px;
 	line-height: 45px;
 	margin-bottom: 35px;
   font-weight: bold;
@@ -11168,7 +11168,7 @@ td {
 .masthead-subheading1 {
 	color: #FFF;
 	font-family: "Poppins", Arial, sans-serif;
-	font-size: 30px;
+	font-size: 35px;
 	line-height: 39px;
 	margin-bottom: 30px;
   	font-weight: bold;
@@ -11195,7 +11195,7 @@ td {
   masthead-heading1, .masthead-heading1{
     color: #FFF;
     font-family: "Poppins", Arial, sans-serif;
-    font-size: 35px;
+    font-size: 40px;
     line-height: 26px;
     margin-bottom: 40px;
     font-weight: bold;
@@ -11203,7 +11203,7 @@ td {
   masthead-subheading1, .masthead-subheading1{
     color: #FFF;
     font-family: "Poppins", Arial, sans-serif;
-    font-size: 30px;
+    font-size: 35px;
     line-height: 30px;
     margin-bottom: 40px;
     font-weight: bold;
@@ -11231,7 +11231,7 @@ td {
   masthead-heading1, .masthead-heading1{
     color: #FFF;
     font-family: "Poppins", Arial, sans-serif;
-    font-size: 20px;
+    font-size: 2p3x;
     line-height: 26px;
     margin-bottom: 15px;
     font-weight: bold;
@@ -11262,6 +11262,7 @@ td {
     color: #FFF;
     font-family: "Poppins", Arial, sans-serif;
     font-size: 15px;
+    line-height: 13px;
     margin-bottom:0;
     font-weight: bold;
   }
